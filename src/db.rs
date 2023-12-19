@@ -1,5 +1,5 @@
 use chrono::prelude::*;
-use rusqlite::{Connection, Result};
+use rusqlite::{Connection, Result, params};
 use colored::{Colorize, ColoredString};
 
 pub struct Todo {
@@ -104,10 +104,16 @@ impl Todo {
     }
 
     pub fn get_report(db: &Connection, id: i64) -> Result<()> {
-        db.execute(
-            "SELECT detail from todo_list WHERE id = ?1",
-            &[id.to_string().as_str()],
-        )?;
+        let query = "SELECT detail from todo_list WHERE id = ?1";
+        let mut stmt = db.prepare(query)?;
+        let detail_raw = stmt.query_map(params![id], |row| {
+            Ok(row.get::<_, String>(0)?)
+        })?;
+
+        for detail in detail_raw {
+            println!("{}", detail?);
+        }
+    
         Ok(())
     }
 }
