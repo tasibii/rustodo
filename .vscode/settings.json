@@ -1,8 +1,5 @@
 {
     "rust-analyzer.linkedProjects": [
-        "./Cargo.toml"
-    ],
-    "cSpell.words": [
-        "sqlx"
+        "./todo/Cargo.toml"
     ]
 }
