@@ -1,26 +1,29 @@
 use tui::{
-    text::{Spans, Span},
+    backend::Backend,
     layout::{Alignment, Rect},
-    style::{Color, Style, Modifier}, 
-    Frame, backend::Backend,
+    style::{Color, Modifier, Style},
+    text::{Span, Spans},
     widgets::{Block, BorderType, Borders, Paragraph, Wrap},
+    Frame,
 };
 
 use crate::app::App;
 
 // Draw the current task that has been selected.
-pub fn render_current_task<B>(f: &mut Frame<B>, app: &App, area: Rect)
+pub fn render_pinned_task<B>(f: &mut Frame<B>, app: &App, area: Rect)
 where
     B: Backend,
 {
     let current = Spans::from(Span::styled(
-        &app.current_task[0], 
-        Style::default().bg(Color::LightGreen).add_modifier(Modifier::BOLD))
-    );
+        &app.current_task,
+        Style::default()
+            .bg(Color::LightGreen)
+            .add_modifier(Modifier::BOLD),
+    ));
     let task_paragraph = Paragraph::new(current.clone())
         .block(
             Block::default()
-                .title("CURRENT TASK")
+                .title("PINNED TASK")
                 .borders(Borders::ALL)
                 .border_type(BorderType::Rounded),
         )

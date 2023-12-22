@@ -1,10 +1,11 @@
-use chrono::{Local, Datelike};
+use chrono::{Datelike, Local};
 use tui::{
-    text::{Spans, Span},
-    layout::{Rect, Alignment},
-    style::{Style, Modifier},
-    widgets::{Block, BorderType, Borders, Paragraph, Wrap},
-    Frame, backend::Backend,
+    backend::Backend,
+    layout::{Alignment, Rect},
+    style::{Modifier, Style},
+    text::{Span, Spans},
+    widgets::{Block, BorderType, Borders, Paragraph},
+    Frame,
 };
 
 pub fn render_tag_date<B>(f: &mut Frame<B>, area: Rect)
@@ -13,11 +14,14 @@ where
 {
     const MTWRFSU: [&'static str; 7] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
     let current_time = Local::now();
-    let clock = format!("{} {}", MTWRFSU[current_time.weekday().number_from_monday() as usize].to_string(), current_time.format("%d/%m/%Y - %H:%M:%S").to_string());
+    let clock = format!(
+        "{} {}",
+        MTWRFSU[current_time.weekday().number_from_monday() as usize].to_string(),
+        current_time.format("%d/%m/%Y - %H:%M:%S").to_string()
+    );
     let content = Spans::from(Span::styled(
         clock,
-        Style::default()
-            .add_modifier(Modifier::BOLD),
+        Style::default().add_modifier(Modifier::BOLD),
     ));
 
     let dt = Paragraph::new(content.clone())
