@@ -355,6 +355,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "rustodo"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "crossterm 0.27.0",
+ "rusqlite",
+ "termion",
+ "tui",
+ "tui-input",
+]
+
+[[package]]
 name = "scopeguard"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -417,18 +429,6 @@ dependencies = [
  "numtoa",
  "redox_syscall 0.2.16",
  "redox_termios",
-]
-
-[[package]]
-name = "todo"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "crossterm 0.27.0",
- "rusqlite",
- "termion",
- "tui",
- "tui-input",
 ]
 
 [[package]]

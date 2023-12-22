@@ -1,5 +1,5 @@
 [package]
-name = "todo"
+name = "rustodo"
 version = "0.1.0"
 authors = ["tasibii <tasibii.web3@gmail.com>"]
 license = "MIT"
@@ -12,3 +12,5 @@ rusqlite = "0.30.0"
 termion = "1.5.6"
 tui = "0.19.0"
 tui-input = "0.8.0"
+
+#  /usr/local/bin/
